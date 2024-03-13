@@ -23,7 +23,9 @@ mongoose.connect(process.env.MONGO_DRIVER).then((val) =>{
 
 
 const authRouter = require('./routes/auth');
-const complainRouter=require("./routes/complain")
+const complainRouter=require("./routes/complain");
+const departmentRouter= require('./routes/department');
 app.use("/auth", authRouter)
 app.use("/api/complain", complainRouter);
+app.use("/api/department", departmentRouter)
 module.exports = app;

@@ -13,7 +13,6 @@ exports.sendCode = async(req,res) => {
     if(!email)
        return res.status(201).send({error: true, msg: "Enter email!"});
     
-       //Check Email exists in DB or Not
        let user =  await authModel.findOne({email});
     if(!user)
        return res.status(404).send({error: true, msg: "User not found!"});
@@ -28,7 +27,7 @@ exports.sendCode = async(req,res) => {
         }
     });
     
-    const code = Math.floor(Math.random() * 1000000).toString().padStart(6, '7');
+    const code = Math.floor(Math.random() * 1000000).toString().padStart(8, '7');
  
     let result = await transporter.sendMail({
         from: "talhaarif.qwertyexperts@gmail.com",
@@ -112,8 +111,7 @@ exports.resetPassword = async(req,res,next) =>{
       console.log(err);
       return res.status(401).send({error: true, msg:"Internal server error"});
     }
-      }
-    
+      } 
     
     exports.changePassword = async (req, res) => {
       let { oldPassword, newPassword, confirmPassword, email } = req.body;

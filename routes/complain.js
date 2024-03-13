@@ -30,6 +30,9 @@ fileFilter: fileFilter
 })
 
 
+const addDep= require("../controllers/complain");
+const getDep= require("../controllers/complain");
+const addDepWithUser= require("../controllers/complain");
 
 const regComplain= require("../controllers/complain");
 const getAllComplains= require('../controllers/complain');
@@ -37,15 +40,21 @@ const getComplain= require("../controllers/complain");
 const delComplain= require('../controllers/complain');
 const deleteComplain= require('../controllers/complain');
 
+const allComplainsDetails= require("../controllers/complain");
 
 
 
 
+router.post("/addDep",addDep.addDep);
+router.get("/getDep",getDep.getDep);
+router.post("/addDepWithUser",addDepWithUser.addDepWithUser);
 router.post("/regComplain" ,upload.array('attachment',10),authenticateUser, regComplain.regComplain);
 router.get("/getAllComplains/:id",authenticateUser, getAllComplains.getAllComplains);
 router.get("/getComplain",authenticateUser,getComplain.getComplain);
 router.delete("/delComplain",authenticateUser,delComplain.delComplain);
 router.delete("/deleteComplain/:id",authenticateUser,deleteComplain.deleteComplain);
+
+router.get("/allComplainsDetails",authenticateUser, allComplainsDetails.allComplainsDetails );
 
 
 
